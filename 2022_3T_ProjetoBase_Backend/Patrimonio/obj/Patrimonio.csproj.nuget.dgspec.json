@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\42410863817.INFOSCS\\Desktop\\Projeto Base\\2022_3T_ProjetoBase_Backend\\Patrimonio\\Patrimonio.csproj": {}
+    "C:\\Users\\42410863817.INFOSCS\\Desktop\\Projeto_Base\\2022_3T_ProjetoBase_Backend\\Patrimonio\\Patrimonio.csproj": {}
   },
   "projects": {
-    "C:\\Users\\42410863817.INFOSCS\\Desktop\\Projeto Base\\2022_3T_ProjetoBase_Backend\\Patrimonio\\Patrimonio.csproj": {
+    "C:\\Users\\42410863817.INFOSCS\\Desktop\\Projeto_Base\\2022_3T_ProjetoBase_Backend\\Patrimonio\\Patrimonio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\42410863817.INFOSCS\\Desktop\\Projeto Base\\2022_3T_ProjetoBase_Backend\\Patrimonio\\Patrimonio.csproj",
+        "projectUniqueName": "C:\\Users\\42410863817.INFOSCS\\Desktop\\Projeto_Base\\2022_3T_ProjetoBase_Backend\\Patrimonio\\Patrimonio.csproj",
         "projectName": "Patrimonio",
-        "projectPath": "C:\\Users\\42410863817.INFOSCS\\Desktop\\Projeto Base\\2022_3T_ProjetoBase_Backend\\Patrimonio\\Patrimonio.csproj",
+        "projectPath": "C:\\Users\\42410863817.INFOSCS\\Desktop\\Projeto_Base\\2022_3T_ProjetoBase_Backend\\Patrimonio\\Patrimonio.csproj",
         "packagesPath": "C:\\Users\\42410863817.INFOSCS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\42410863817.INFOSCS\\Desktop\\Projeto Base\\2022_3T_ProjetoBase_Backend\\Patrimonio\\obj\\",
+        "outputPath": "C:\\Users\\42410863817.INFOSCS\\Desktop\\Projeto_Base\\2022_3T_ProjetoBase_Backend\\Patrimonio\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\42410863817.INFOSCS\\AppData\\Roaming\\NuGet\\NuGet.Config",

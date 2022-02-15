@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ax+ln0IMFoWmhbXiP3/OKy4sjNX+d+xN+yCouoiH6Yd5znplEPMwwuBhU6o7P0oiSSFSqBK3EZ184hmeYDe3aQ==",
+  "dgSpecHash": "39zmYEiFBYD4zM6q/Fzosu4xejs90BN9f5W5qDPwGe3AsGENd2ST9CuOoLUkoH7u7Gl1RqJWCWiuzdTSpE21Vg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\42410863817.INFOSCS\\Desktop\\Projeto Base\\2022_3T_ProjetoBase_Backend\\Patrimonio_teste\\Patrimonio_teste.csproj",
+  "projectFilePath": "C:\\Users\\42410863817.INFOSCS\\Desktop\\Projeto_Base\\2022_3T_ProjetoBase_Backend\\Patrimonio_teste\\Patrimonio_teste.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\42410863817.INFOSCS\\.nuget\\packages\\bcrypt.net-next\\4.0.2\\bcrypt.net-next.4.0.2.nupkg.sha512",
     "C:\\Users\\42410863817.INFOSCS\\.nuget\\packages\\castle.core\\4.4.0\\castle.core.4.4.0.nupkg.sha512",

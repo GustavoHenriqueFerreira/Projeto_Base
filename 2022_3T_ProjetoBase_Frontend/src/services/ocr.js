@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const lerConteudoDaImagem = async (formData) => {
+export const LerConteudoDaImagem = async (formData) => {
     let resultado;
 
     await axios({

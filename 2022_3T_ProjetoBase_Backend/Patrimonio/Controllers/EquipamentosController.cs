@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Patrimonio.Contexts;
 using Patrimonio.Domains;
-using Patrimonio.Interfaces;
 using Patrimonio.Utils;
 
 namespace Patrimonio.Controllers
@@ -16,25 +15,25 @@ namespace Patrimonio.Controllers
     [ApiController]
     public class EquipamentosController : ControllerBase
     {
-        private readonly IEquipamentoRepository _equipamentoRepository;
+        private readonly PatrimonioContext _context;
 
-        public EquipamentosController(IEquipamentoRepository contexto)
+        public EquipamentosController(PatrimonioContext context)
         {
-            _equipamentoRepository = contexto;
+            _context = context;
         }
 
         // GET: api/Equipamentos
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Equipamento>>> GetEquipamentos()
         {
-            return await _equipamentoRepository.ToListAsync();
+            return await _context.Equipamentos.ToListAsync();
         }
 
         // GET: api/Equipamentos/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Equipamento>> GetEquipamento(int id)
         {
-            var equipamento = await _equipamentoRepository.Equipamentos.FindAsync(id);
+            var equipamento = await _context.Equipamentos.FindAsync(id);
 
             if (equipamento == null)
             {
@@ -54,11 +53,11 @@ namespace Patrimonio.Controllers
                 return BadRequest();
             }
 
-            _equipamentoRepository.Entry(equipamento).State = EntityState.Modified;
+            _context.Entry(equipamento).State = EntityState.Modified;
 
             try
             {
-                await _equipamentoRepository.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -82,27 +81,27 @@ namespace Patrimonio.Controllers
         {
 
             #region Upload da Imagem com extensões permitidas apenas
-                string[] extensoesPermitidas = { "jpg", "png", "jpeg", "gif" };
-                string uploadResultado = Upload.UploadFile(arquivo, extensoesPermitidas);
+            string[] extensoesPermitidas = { "jpg", "png", "jpeg", "gif" };
+            string uploadResultado = Upload.UploadFile(arquivo, extensoesPermitidas);
 
-                if (uploadResultado == "")
-                {
-                    return BadRequest("Arquivo não encontrado");
-                }
+            if (uploadResultado == "")
+            {
+                return BadRequest("Arquivo não encontrado");
+            }
 
-                if (uploadResultado == "Extensão não permitida")
-                {
-                    return BadRequest("Extensão de arquivo não permitida");
-                }
+            if (uploadResultado == "Extensão não permitida")
+            {
+                return BadRequest("Extensão de arquivo não permitida");
+            }
 
-                equipamento.Imagem = uploadResultado; 
+            equipamento.Imagem = uploadResultado;
             #endregion
 
             // Pegando o horário do sistema
             equipamento.DataCadastro = DateTime.Now;
 
-            _equipamentoRepository.Add(equipamento);
-            await _equipamentoRepository.SaveChanges();
+            _context.Equipamentos.Add(equipamento);
+            await _context.SaveChangesAsync();
 
             return Created("Equipamento", equipamento);
         }
@@ -111,14 +110,14 @@ namespace Patrimonio.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEquipamento(int id)
         {
-            var equipamento = await _equipamentoRepository.FindAsync(id);
+            var equipamento = await _context.Equipamentos.FindAsync(id);
             if (equipamento == null)
             {
                 return NotFound();
             }
 
-            _equipamentoRepository.Remove(equipamento);
-            await _equipamentoRepository.SaveChanges();
+            _context.Equipamentos.Remove(equipamento);
+            await _context.SaveChangesAsync();
 
             // Removendo Arquivo do servidor
             Upload.RemoverArquivo(equipamento.Imagem);
@@ -128,7 +127,29 @@ namespace Patrimonio.Controllers
 
         private bool EquipamentoExists(int id)
         {
-            return _equipamentoRepository.Equipamentos.Any(e => e.Id == id);
+            return _context.Equipamentos.Any(e => e.Id == id);
         }
     }
 }
+
+// GET: api/Equipamentos
+//[HttpGet]
+//public IActionResult GetEquipamentos()
+//{
+//return Ok(_equipamentoRepository.Listar());
+//}
+
+// GET: api/Equipamentos/5
+//[HttpGet("{id}")]
+//public IActionResult GetEquipamento(int id)
+// {
+//   var equipamentoBuscado = _equipamentoRepository.BuscarPorID(id);
+//
+//   if (equipamentoBuscado == null)
+//   {
+//       return NotFound();
+//   }
+//
+//    return Ok(equipamentoBuscado);
+//}
+

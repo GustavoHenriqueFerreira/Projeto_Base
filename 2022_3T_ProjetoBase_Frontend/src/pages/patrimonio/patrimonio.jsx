@@ -6,7 +6,7 @@ import Titulo from "../../components/titulo/titulo";
 import './style.css';
 
 import axios from 'axios';
-import { lerConteudoDaImagem } from "../../services/ocr";
+import { LerConteudoDaImagem } from "../../services/ocr";
 
 export const Patrimonio = () => {
     
@@ -55,7 +55,7 @@ export const Patrimonio = () => {
     }
 
     const Listar = () => {
-      axios.get('https://6204f8ac161670001741b12e.mockapi.io/equipamentos')
+      axios.get('http://localhost:5000/api/Equipamentos')
       .then(resposta => {
         setProdutos(resposta.data);
       })
@@ -70,19 +70,20 @@ export const Patrimonio = () => {
       .catch(erro => console.log(erro))
     }
 
-    const lerOCR = (event) => {
+    const LerOCR = (event) => {
+
       event.preventDefault();
 
       var formData = new FormData();
 
       const target = document.getElementById("codigo");
-      const file = target.files[0]
+      const file = target.files[0];
 
-      formData.append('url', file, file.name)
+      formData.append("url", file, file.name);
 
-      let resultaDoOCR = lerConteudoDaImagem(formData);
+      let resultado_OCR = LerConteudoDaImagem(formData);
+      resultado_OCR.then(res => setDescricao(res));
 
-      resultaDoOCR.then( res => setDescricao(res)); 
     }
 
     useEffect(() => {
@@ -110,8 +111,8 @@ export const Patrimonio = () => {
               <input
                 className="input__login" 
                 type="text" 
-                name="nomePatrimonio" 
-                id="nomePatrimonio" 
+                name="codigoPatrimonio" 
+                id="codigoPatrimonio" 
                 placeholder="Código do Patrimonio"
                 value={descricao}
                 onChange={(e) => setDescricao(e.target.value)}
@@ -121,7 +122,7 @@ export const Patrimonio = () => {
                 type="file" 
                 id="codigo" 
                 accept="image/png, image/jpeg"
-                onChange={(e) => lerOCR(e)}
+                onChange={(e) => LerOCR(e)}
               />
 
               <label htmlFor="ativo">
@@ -151,7 +152,6 @@ export const Patrimonio = () => {
             {produtos.map(item => 
               <div className="card" key={item.id}>
                 <img src={"http://localhost:5000/StaticFiles/Images/"+item.imagem} alt="" />
-                {/* <img src={item.imagem} alt="" /> */}
                 <div>
                   <h4>{item.nomePatrimonio}</h4>
                   <span>Patrimônio: {item.descricao}</span>
